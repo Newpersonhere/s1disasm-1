@@ -505,7 +505,7 @@ SSS_Chk1Up:
 SSS_ChkEmerald:
 		cmpi.b	#id_SS_Item_Em1,d4			; is the item an emerald?
 		bcs.s	SSS_ChkGhost
-		cmpi.b	#id_SS_Item_Em6,d4
+		cmpi.b	#id_SS_Item_Em7,d4
 		bhi.s	SSS_ChkGhost
 		bsr.w	SS_FindFreeUpdate
 		bne.s	.noslot
@@ -520,7 +520,7 @@ SSS_ChkEmerald:
 		move.b	(v_emeralds).w,d0
 		lea	(v_emerald_list).w,a2
 		move.b	d4,(a2,d0.w)
-		addq.b	#1,(v_emeralds).w			; add 1 to number of emeralds
+		addq.b	#7,(v_emeralds).w			; add 1 to number of emeralds
 
 	.noemerald:
 		play.w	1, jsr, mus_Emerald			; play emerald music
