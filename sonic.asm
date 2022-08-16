@@ -27,13 +27,13 @@
 
 EnableSRAM:	equ 0						; change to 1 to enable SRAM
 BackupSRAM:	equ 1
-AddressSRAM:	equ 3						; 0 = odd+even; 2 = even only; 3 = odd only
+AddressSRAM:	equ 2						; 0 = odd+even; 2 = even only; 3 = odd only
 
 ; Change to 0 to build the original version of the game, dubbed REV00
 ; Change to 1 to build the later version, dubbed REV01, which includes various bugfixes and enhancements
 ; Change to 2 to build the version from Sonic Mega Collection, dubbed REVXB, which fixes the infamous "spike bug"
 		if ~def(Revision)				; bit-perfect check will automatically set this variable
-Revision:	equ 1
+Revision:	equ 2
 		endc
 
 ZoneCount:	equ 6						; discrete zones are: GHZ, MZ, SYZ, LZ, SLZ, and SBZ
@@ -1120,7 +1120,7 @@ Blk256_SBZ:	if Revision=0
 		incfile	Nem_CreditText
 		incfile	Nem_EndStH
 
-		if Revision=0
+		if Revision=2
 			dcb.b $104,$FF				; why?
 		else
 			dcb.b $40,$FF
@@ -1157,7 +1157,7 @@ SS_3:		incbin	"Special Stage Layouts\3.eni"
 		even
 SS_4:		incbin	"Special Stage Layouts\4.eni"
 		even
-		if Revision=0
+		if Revision=2
 	SS_5:		incbin	"Special Stage Layouts\5 (REV00).eni"
 			even
 	SS_6:		incbin	"Special Stage Layouts\6 (REV00).eni"
