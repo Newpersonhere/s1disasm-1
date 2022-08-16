@@ -26,7 +26,7 @@ Drown_Index:	index *,,2
 
 		rsobj DrownCount,$2C
 ost_drown_restart_time:	rs.w 1					; $2C ; time to restart after Sonic drowns
-		rsset $30
+		reset $30
 ost_drown_x_start:	rs.w 1					; $30 ; original x-axis position
 ost_drown_disp_time:	rs.b 1					; $32 ; time to display each number
 ost_drown_type:		rs.b 1					; $33 ; bubble type
