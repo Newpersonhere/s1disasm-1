@@ -313,7 +313,7 @@ HurtSonic:
 	.isleft:
 		move.w	#0,ost_inertia(a0)
 		move.b	#id_Hurt,ost_anim(a0)
-		move.w	#sonic_flash_time,ost_sonic_flash_time(a0) ; set temp invincible time to 2 seconds
+		move.w	#sonic_flash_time,ost_sonic_flash_time(a2) ; set temp invincible time to 2 seconds
 		move.w	#sfx_Death,d0				; load normal damage sound
 		cmpi.b	#id_Spikes,(a2)				; was damage caused by spikes?
 		bne.s	.sound					; if not, branch
@@ -358,7 +358,7 @@ KillSonic:
 		move.b	#id_Death,ost_anim(a0)
 		bset	#tile_hi_bit,ost_tile(a0)
 		move.w	#sfx_Death,d0				; play normal death sound
-		cmpi.b	#id_Spikes,(a2)				; check	if you were killed by spikes
+		cmpi.b	#id_Spikes,(a0)				; check	if you were killed by spikes
 		bne.s	.sound
 		move.w	#sfx_SpikeHit,d0			; play spikes death sound
 
