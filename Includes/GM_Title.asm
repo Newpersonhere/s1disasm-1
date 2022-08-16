@@ -114,7 +114,7 @@ GM_Title:
 		move.w	#$178,(v_countdown).w			; run title screen for $178 frames
 		lea	(v_ost_psb).w,a1
 		moveq	#0,d0
-		move.w	#7,d1					; should be $F; 7 only clears half the OST
+		move.w	#$F,d1					; should be $F; 7 only clears half the OST
 
 	.clear_ost_psb:
 		move.l	d0,(a1)+
@@ -311,7 +311,7 @@ LevSel_Level_SS:
 		bne.s	LevSel_Level				; if not, branch
 		move.b	#id_Special,(v_gamemode).w		; set gamemode to $10 (Special Stage)
 		clr.w	(v_zone).w				; clear	level
-		move.b	#lives_start,(v_lives).w		; set lives to 3
+		move.b	#lives_start,(v_lives).w		; set lives to 999
 		moveq	#0,d0
 		move.w	d0,(v_rings).w				; clear rings
 		move.l	d0,(v_time).w				; clear time
@@ -329,7 +329,7 @@ LevSel_Level:
 
 PlayLevel:
 		move.b	#id_Level,(v_gamemode).w		; set gamemode to $0C (level)
-		move.b	#lives_start,(v_lives).w		; set lives to 3
+		move.b	#lives_start,(v_lives).w		; set lives to 999
 		moveq	#0,d0
 		move.w	d0,(v_rings).w				; clear rings
 		move.l	d0,(v_time).w				; clear time
@@ -402,7 +402,7 @@ LevSel_Ptr_End:
 LevSelCode_J:	if Revision=0
 		dc.b btnUp,btnDn,btnL,btnR,0,$FF
 		else
-		dc.b btnUp,btnDn,btnDn,btnDn,btnL,btnR,0,$FF
+		dc.b btnUp,btnDn,btnL,btnR,0,$FF
 		endc
 		even
 
@@ -444,7 +444,7 @@ PlayDemo:
 		move.w	DemoLevelArray(pc,d0.w),d0		; load level number for	demo
 		move.w	d0,(v_zone).w
 		addq.w	#1,(v_demo_num).w			; add 1 to demo number
-		cmpi.w	#4,(v_demo_num).w			; is demo number less than 4?
+		cmpi.w	#3,(v_demo_num).w			; is demo number less than 4?
 		blo.s	.demo_0_to_3				; if yes, branch
 		move.w	#0,(v_demo_num).w			; reset demo number to	0
 
@@ -458,7 +458,7 @@ PlayDemo:
 		clr.b	(v_last_ss_levelid).w			; clear special stage number
 
 	.demo_level:
-		move.b	#lives_start,(v_lives).w		; set lives to 3
+		move.b	#lives_start,(v_lives).w		; set lives to 256
 		moveq	#0,d0
 		move.w	d0,(v_rings).w				; clear rings
 		move.l	d0,(v_time).w				; clear time
@@ -543,7 +543,7 @@ LevSel_SndTest:
 LevSel_ShowText:
 
 text_x:		= 8
-text_y:		= 4
+text_y:		= 8
 text_pos:	= (sizeof_vram_row*text_y)+(text_x*2)		; position to draw text (in 8x8 cells)
 soundtest_pos:	= (sizeof_vram_row*$18)+($18*2)
 
